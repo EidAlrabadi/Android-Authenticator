@@ -34,6 +34,15 @@ public class RegisterActivity extends AppCompatActivity {
                 }else if(spassword.matches("")){
                     Toast.makeText(getApplicationContext(),"Please enter a password",Toast.LENGTH_SHORT).show();
 
+                }else if(!spassword.matches("^(?=.*[A-Z])(?=.*[0-9])[A-Z0-9]+$")){
+                    Toast.makeText(getApplicationContext(),"Password must contain letters and numbers and uppercase",Toast.LENGTH_SHORT).show();
+
+
+                }
+            else if(spassword.length() < 6){
+                    Toast.makeText(getApplicationContext(),"Password must be greater than 6 characters",Toast.LENGTH_SHORT).show();
+
+
                 }
 
                 // TODO Auto-generated method stub
