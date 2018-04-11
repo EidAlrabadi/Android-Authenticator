@@ -67,12 +67,13 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Please enter a password",Toast.LENGTH_SHORT).show();
 
                 }else if(sPassword.matches("^([^0-9]*|[^A-Z]*|[^a-z]*|[a-zA-Z0-9]*)$")){
-                    Toast.makeText(getApplicationContext(),"Password must contain letters,numbers,uppercase and special character",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Password must contain Uppercase,Lowercase,Digit and special character",Toast.LENGTH_SHORT).show();
+
 
 
                 }
-            else if(sPassword.length() < 6){
-                    Toast.makeText(getApplicationContext(),"Password must be greater than 6 characters",Toast.LENGTH_SHORT).show();
+            else if(sPassword.length() <= 7){
+                    Toast.makeText(getApplicationContext(),"Password must be greater than 7 characters",Toast.LENGTH_SHORT).show();
 
 
                 }
@@ -87,13 +88,13 @@ public class RegisterActivity extends AppCompatActivity {
 
                     try {
                         RequestQueue requestQueue = Volley.newRequestQueue(RegisterActivity.this);
-                        final String URL = "10.0.2.2";
+                        final String URL = "https://dos-auth.us/create_account";
                         JSONObject jsonBody = new JSONObject();
                         jsonBody.put("Username", sUsername);
                         jsonBody.put("Password", sPassword);
                         final String requestBody = jsonBody.toString();
 
-                        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
+                        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
                                 Log.i("VOLLEY", response);
@@ -124,7 +125,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 String responseString = "";
                                 if (response != null) {
                                     responseString = String.valueOf(response.statusCode);
-                                    // can get more details such as response.headers
+                                    Log.d("Code: ", responseString);
                                 }
                                 return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response));
                             }
@@ -134,7 +135,7 @@ public class RegisterActivity extends AppCompatActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    Intent i = new Intent(RegisterActivity.this, waitingPage.class);
+                    Intent i = new Intent(RegisterActivity.this, UserAreaActivity.class);
                     startActivity(i);
                     };
 
@@ -145,4 +146,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         });
     }
+
+
 }

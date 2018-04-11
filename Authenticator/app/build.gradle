@@ -9,6 +9,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        useLibrary 'org.apache.http.legacy'
     }
     buildTypes {
         release {
@@ -27,7 +28,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.10'
     implementation 'com.android.volley:volley:1.1.0'
-    compile 'org.json:json:20171018'
 
 
 }
